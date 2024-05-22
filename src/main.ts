@@ -1,16 +1,16 @@
-import { ViteSSG } from 'vite-ssg'
-import { setupLayouts } from 'virtual:generated-layouts'
+import { createRouter, createWebHistory } from 'vue-router'
 import App from './App.vue'
-import generatedRoutes from '~pages'
+import routes from '~pages'
 import './App.css'
 
 import '@unocss/reset/tailwind.css'
 import './styles/main.css'
 
-const routes = setupLayouts(generatedRoutes)
+const app = createApp(App)
 
-// https://github.com/antfu/vite-ssg
-export const createApp = ViteSSG(
-  App,
-  { routes, base: import.meta.env.BASE_URL },
-)
+const router = createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
+  routes,
+})
+app.use(router)
+app.mount('#app')

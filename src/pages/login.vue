@@ -35,8 +35,9 @@ function handlerClick(uuid: string) {
   </h1>
   <div class="grid gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 px-8">
     <div
-      v-for="item in components"
-      :key="item.url" class=" relative block overflow-hidden rounded-lg shadow aspect-w-16 aspect-h-10 dark:bg-gray-800 main-container hover:shadow-lg" @click="handlerClick(item.uuid)"
+      v-for="item in components" :key="item.url"
+      class=" relative block overflow-hidden rounded-lg shadow aspect-w-16 aspect-h-10 dark:bg-gray-800 main-container hover:shadow-lg"
+      @click="handlerClick(item.uuid)"
     >
       <component :is="item.component" />
     </div>
@@ -44,16 +45,16 @@ function handlerClick(uuid: string) {
 </template>
 
 <style scoped>
->>>.main-container>div {
+:deep(.main-container>div) {
   transform: translate3d(0, 0, 0);
   pointer-events: none;
 }
 
->>>.main-container .h-screen {
+:deep(.main-container .h-screen) {
   height: 100% !important;
 }
 
->>>.main-container>div>div {
+:deep(.main-container>div>div) {
   transform: scale(0.66)
 }
 </style>
