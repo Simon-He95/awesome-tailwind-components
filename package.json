@@ -33,7 +33,6 @@
   "dependencies": {
     "@types/uuid": "^9.0.8",
     "@vueuse/core": "^9.0.0",
-    "@vueuse/head": "^0.7.7",
     "autoprefixer": "^10.4.19",
     "dom-to-image": "^2.6.0",
     "html2canvas": "^1.4.1",

@@ -11,9 +11,6 @@ dependencies:
   '@vueuse/core':
     specifier: ^9.0.0
     version: 9.0.0(vue@3.2.37)
-  '@vueuse/head':
-    specifier: ^0.7.7
-    version: 0.7.7(vue@3.2.37)
   autoprefixer:
     specifier: ^10.4.19
     version: 10.4.19(postcss@8.4.38)
@@ -1179,6 +1176,7 @@ packages:
       vue: '>=3'
     dependencies:
       vue: 3.2.37
+    dev: true
 
   /@vueuse/metadata@8.9.4:
     resolution: {integrity: sha512-IwSfzH80bnJMzqhaapqJl9JRIiyQU0zsRGEgnxN6jhq7992cPUJIRfV+JHRIZXjYqbwt07E1gTEp0R0zPJ1aqw==}

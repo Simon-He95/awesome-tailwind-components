@@ -14,9 +14,7 @@ export default defineConfig({
   },
 
   plugins: [
-    Pages(
-      { dirs: 'src/pages' },
-    ),
+    Pages({ dirs: 'src/pages' }),
     Vue({
       include: [/\.vue$/],
       reactivityTransform: true,
@@ -24,19 +22,9 @@ export default defineConfig({
 
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({
-      imports: [
-        'vue',
-        'vue-router',
-        'vue-i18n',
-        'vue/macros',
-        '@vueuse/head',
-        '@vueuse/core',
-      ],
+      imports: ['vue', 'vue-router', 'vue-i18n', '@vueuse/core'],
       dts: 'src/auto-imports.d.ts',
-      dirs: [
-        'src/composables',
-        'src/store',
-      ],
+      dirs: ['src/composables', 'src/store'],
       vueTemplate: true,
     }),
 
@@ -45,7 +33,7 @@ export default defineConfig({
       // allow auto load markdown components under `./src/components/`
       extensions: ['vue'],
       // allow auto import and register components used in markdown
-      include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+      include: [/\.vue$/, /\.vue\?vue/],
       dts: 'src/components.d.ts',
     }),
 
@@ -62,5 +50,4 @@ export default defineConfig({
       inline: ['@vue', '@vueuse', 'vue-demi'],
     },
   },
-
 })
