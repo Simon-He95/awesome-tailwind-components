@@ -1,17 +1,17 @@
 {
-  "name": "awesome-tailwindcomponents",
+  "name": "awesome-tailwind-components",
   "version": "0.0.0",
   "private": true,
   "packageManager": "pnpm@7.6.0",
   "repository": {
     "type": "git",
-    "url": "git + git@github.com:Simon-He95/awesome-tailwindcomponents.git"
+    "url": "git + git@github.com:Simon-He95/awesome-tailwind-components.git"
   },
   "bugs": {
-    "url": "https://github.com/Simon-He95/awesome-tailwindcomponents/issues"
+    "url": "https://github.com/Simon-He95/awesome-tailwind-components/issues"
   },
   "keywords": [
-    "awesome-tailwindcomponents"
+    "awesome-tailwind-components"
   ],
   "engines": {
     "node": ">=14.6"
@@ -42,6 +42,7 @@
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.3",
     "uuid": "^9.0.1",
+    "vivid-typing": "^1.1.44",
     "vue": "^3.2.37",
     "vue-demi": "^0.13.6",
     "vue-i18n": "^9.1.10",

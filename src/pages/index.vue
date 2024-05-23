@@ -3,7 +3,14 @@ const router = useRouter()
 </script>
 
 <template>
-  <div class="grid gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 px-8 py-4 ">
+  <div class="relative max-w-5xl mx-auto pt-20 sm:pt-24 lg:pt-8">
+    <h1
+      class="text-slate-900 font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-center dark:text-white"
+    >
+      Awesome Tailwind Components
+    </h1>
+  </div>
+  <div class="grid gap-8 lg:mt-16 mt-8 md:grid-cols-2 lg:grid-cols-3 px-8 py-4">
     <button class="hover:shadow-lg py-2 shadow" @click="router.push('/login')">
       Login
     </button>
