@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { store } from '~/store'
 import { getComponentHtml } from '~/utils'
 
+const namespace = 'login'
 const urls = import.meta.glob('../components/login/*.vue')
 const components = ref<
   { url: string; html: string; uuid: string; componentName: string }[]
@@ -13,13 +14,13 @@ onMounted(() => {
   Promise.all(
     Object.keys(urls).map(async (key) => {
       // 复用uuid
-      const namespace = import.meta.url.match(/\/([^./]+).vue/)![1]
       const target = store.find(namespace, key)
 
       if (target)
         return target
       const url = urls[key]
-      const componentName = key.match(/login\/(.+)\.vue/)![1]
+      const componentName = key.match(`\/${namespace}\/(.+)\.vue`)![1]
+
       return {
         url: key,
         html: await getComponentHtml(url),
