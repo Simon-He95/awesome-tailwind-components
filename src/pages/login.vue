@@ -5,31 +5,41 @@ import { store } from '~/store'
 import { getComponentHtml } from '~/utils'
 
 const urls = import.meta.glob('../components/login/*.vue')
-const components = ref<{ url: string; html: string; uuid: string }[]>([])
+const components = ref<
+  { url: string; html: string; uuid: string; componentName: string }[]
+>([])
 const router = useRouter()
 onMounted(() => {
-  Promise.all(Object.keys(urls).map(async (key) => {
-    // 复用uuid
-    const namespace = import.meta.url.match(/\/([^./]+).vue/)![1]
-    const target = store.find(namespace, key)
-    if (target)
-      return target
-    const url = urls[key]
-    return {
-      url: key,
-      html: await getComponentHtml(url),
-      uuid: `${namespace}-${uuidv4()}`,
-    }
-  })).then((res) => {
-    components.value = res
-    store.set('login', res.reduce((acc, cur) => {
-      acc[cur.uuid] = {
-        html: cur.html,
-        url: cur.url,
-        uuid: cur.uuid,
+  Promise.all(
+    Object.keys(urls).map(async (key) => {
+      // 复用uuid
+      const namespace = import.meta.url.match(/\/([^./]+).vue/)![1]
+      const target = store.find(namespace, key)
+
+      if (target)
+        return target
+      const url = urls[key]
+      const componentName = key.match(/login\/(.+)\.vue/)![1]
+      return {
+        url: key,
+        html: await getComponentHtml(url),
+        uuid: `${namespace}-${uuidv4()}`,
+        componentName,
       }
-      return acc
-    }, {} as any))
+    }),
+  ).then((res) => {
+    components.value = res
+    store.set(
+      'login',
+      res.reduce((acc, cur) => {
+        acc[cur.uuid] = {
+          html: cur.html,
+          url: cur.url,
+          uuid: cur.uuid,
+        }
+        return acc
+      }, {} as any),
+    )
   })
 })
 
@@ -42,18 +52,26 @@ function handlerClick(uuid: string) {
   <h1 class="px-8 pt-4 font-bold text-[30px]">
     Login Components:
   </h1>
-  <div class="grid gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 px-8">
+  <div class="grid gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 p-8">
     <div
-      v-for="item in components" :key="item.url" class=" relative block overflow-hidden rounded-lg shadow aspect-w-16 aspect-h-10 dark:bg-gray-800 main-container hover:shadow-lg"
+      v-for="item in components"
+      :key="item.url"
+      class="cursor-pointer group relative main-container"
       @click="handlerClick(item.uuid)"
     >
-      <div v-html="item.html" />
+      <div
+        class="group-hover:scale-105 block rounded-lg shadow dark:bg-gray-800 hover:shadow-lg !max-h-[250px] overflow-hidden aspect-w-16 aspect-h-10"
+        v-html="item.html"
+      />
+      <span
+        class="group-hover:block hidden absolute bottom-0 z-50 left-[50%] text-center truncate -translate-x-[50%] translate-y-[100%] text-gray-500/40 w-full"
+      >{{ item.componentName }}</span>
     </div>
   </div>
 </template>
 
 <style scoped>
-:deep(.main-container>div) {
+:deep(.main-container > div) {
   transform: translate3d(0, 0, 0);
   pointer-events: none;
 }
@@ -62,7 +80,55 @@ function handlerClick(uuid: string) {
   height: 100% !important;
 }
 
-:deep(.main-container>div>div>div) {
-  transform: scale(0.66)
+:deep(.main-container .min-h-screen) {
+  min-height: 100% !important;
+}
+
+:deep(.main-container > div > *) {
+  /* transform: scale(0.66); */
+  height: 100%;
+}
+
+:deep(.main-container .lg\:w-4\/12),
+:deep(.main-container .lg\:w-1\/3, ),
+:deep(.main-container .w-screen),
+:deep(.main-container .lg\:w-5\/12),
+:deep(.main-container .lg\:w-11\/12),
+:deep(.main-container .lg\:w-2\/3),
+:deep(.main-container .lg\:w-1\/2),
+:deep(.main-container .lg\:w-3\/4),
+:deep(.main-container .lg\:w-2\/5),
+:deep(.main-container .lg\:w-3\/5),
+:deep(.main-container .lg\:w-1\/4),
+:deep(.main-container .lg\:w-1\/5),
+:deep(.main-container .lg\:w-2\/5),
+:deep(.main-container .lg\:w-3\/5),
+:deep(.main-container .lg\:w-4\/5),
+:deep(.main-container .lg\:w-5\/6),
+:deep(.main-container .lg\:w-1\/6),
+:deep(.main-container .lg\:w-2\/6),
+:deep(.main-container .lg\:w-3\/6),
+:deep(.main-container .lg\:w-4\/6),
+:deep(.main-container .lg\:w-5\/6),
+:deep(.main-container .lg\:w-6\/12),
+:deep(.main-container .lg\:w-7\/12),
+:deep(.main-container .lg\:w-8\/12),
+:deep(.main-container .lg\:w-9\/12),
+:deep(.main-container .lg\:w-10\/12),
+:deep(.main-container .lg\:w-11\/12),
+:deep(.main-container .lg\:w-12\/12),
+:deep(.main-container .lg\:w-1\/12),
+:deep(.main-container .lg\:w-2\/12),
+:deep(.main-container .lg\:w-3\/12),
+:deep(.main-container .lg\:w-4\/12),
+:deep(.main-container .lg\:w-5\/12),
+:deep(.main-container .lg\:w-6\/12),
+:deep(.main-container .lg\:w-7\/12),
+:deep(.main-container .lg\:w-8\/12),
+:deep(.main-container .lg\:w-9\/12),
+:deep(.main-container .lg\:w-10\/12),
+:deep(.main-container .lg\:w-11\/12),
+:deep(.main-container .md\:w-8\/12) {
+  width: 100% !important;
 }
 </style>

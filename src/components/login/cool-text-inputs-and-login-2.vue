@@ -37,7 +37,7 @@ window.addEventListener('load', () => {
       >
       <label
         for="email"
-        class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text"
+        class="label absolute top-0 left-0 mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text"
       >Email Address</label>
     </div>
     <div class="mb-4 relative">
@@ -49,7 +49,7 @@ window.addEventListener('load', () => {
       >
       <label
         for="password"
-        class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text"
+        class="label absolute top-0 left-0 mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text"
       >Password</label>
     </div>
     <button

@@ -3,7 +3,11 @@
 <template>
   <div class="max-w-xl container mx-auto">
     <div class="w-full">
-      <img src="./../images/Dummy_Logo (1).png" class="mx-auto" alt="">
+      <img
+        src="https://source.unsplash.com/random/300x200"
+        class="mx-auto"
+        alt=""
+      >
       <p class="text-center text-neutral-600 text-base font-semibold">
         Login into your account
       </p>
