@@ -4,8 +4,8 @@ import { v4 as uuidv4 } from 'uuid'
 import { store } from '~/store'
 import { getComponentHtml } from '~/utils'
 
-const namespace = 'login'
-const urls = import.meta.glob('../components/login/*.vue')
+const namespace = 'kit'
+const urls = import.meta.glob('../components/kit/*.vue')
 const components = ref<
   { url: string; html: string; uuid: string; componentName: string }[]
 >([])
@@ -31,7 +31,7 @@ onMounted(() => {
   ).then((res) => {
     components.value = res
     store.set(
-      'login',
+      'kit',
       res.reduce((acc, cur) => {
         acc[cur.uuid] = {
           html: cur.html,
@@ -52,7 +52,7 @@ function handlerClick(uuid: string) {
 
 <template>
   <h1 class="px-8 pt-4 font-bold text-[30px]">
-    Login Components:
+    Kit Components:
   </h1>
   <div class="grid gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 p-8">
     <div

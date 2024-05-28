@@ -1,4 +1,7 @@
-<script setup></script>
+<script setup>
+import { addScript } from 'lazy-js-utils'
+addScript('https://unpkg.com/flowbite@1.4.0/dist/flowbite.js')
+</script>
 
 <template>
   <div id="default-carousel" class="relative" data-carousel="static">
@@ -122,7 +125,6 @@
       target="_blank"
     >Flowbite Documentation</a>.
   </p>
-  <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js" />
 </template>
 
 <style scope></style>

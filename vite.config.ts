@@ -12,7 +12,6 @@ export default defineConfig({
       '~/': `${path.resolve(__dirname, 'src')}/`,
     },
   },
-
   plugins: [
     Pages({ dirs: 'src/pages' }),
     Vue({

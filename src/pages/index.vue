@@ -1,5 +1,14 @@
 <script setup lang="ts">
 const router = useRouter()
+const buttonRoute = Object.keys(import.meta.glob('../pages/*.vue')).map(
+  (key) => {
+    const name = key.match(/\/(.+)\.vue/)![1]
+    return {
+      title: name[0].toUpperCase() + name.slice(1),
+      url: `/${name}`,
+    }
+  },
+)
 </script>
 
 <template>
@@ -11,9 +20,13 @@ const router = useRouter()
     </h1>
   </div>
   <div class="grid gap-8 lg:mt-16 mt-8 md:grid-cols-2 lg:grid-cols-3 px-8 py-4">
-    <button class="hover:shadow-lg py-2 shadow" @click="router.push('/login')">
-      Login
+    <button
+      v-for="item in buttonRoute"
+      :key="item.url"
+      class="hover:shadow-lg py-2 shadow"
+      @click="router.push(item.url)"
+    >
+      {{ item.title }}
     </button>
-    <!-- <button class="hover:shadow-lg py-2 shadow" @click="router.push('/login')">Button</button> -->
   </div>
 </template>
